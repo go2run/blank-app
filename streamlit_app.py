@@ -1,4 +1,6 @@
 import streamlit as st
+from st_audiorec import st_audiorec
+
 
 st.title("🎈 My new app")
 st.write(
@@ -7,15 +9,16 @@ st.write(
 st.title("Hello Streamlit-er 👋")
 st.markdown(
     """ 
-    This is a playground for you to try Streamlit and have fun. 
-
     **There's :rainbow[so much] you can build!**
-    
-    We prepared a few examples for you to get started. Just 
-    click on the buttons above and discover what you can do 
-    with Streamlit. 
+
+    * [about-code-owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
+    * [codespaces](https://github.com/codespaces)
     """
 )
 
-if st.button("Send balloons!"):
-    st.balloons()
+_ = st.button("Send balloons!") and st.balloons()
+
+wav_audio_data = st_audiorec()
+
+if wav_audio_data is not None:
+   st.audio(wav_audio_data, format='audio/wav')
